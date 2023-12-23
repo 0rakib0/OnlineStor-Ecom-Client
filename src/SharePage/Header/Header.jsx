@@ -1,4 +1,5 @@
-import { FaFlagCheckered, FaFlagUsa, FaRegHeart, FaRegUser, FaShoppingCart } from "react-icons/fa";
+import { FaFlagCheckered, FaFlagUsa, FaRegHeart, FaRegUser, FaRegUserCircle, FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -21,10 +22,13 @@ const Header = () => {
                 </div>
                 <div className="flex gap-4">
                     <div className="flex items-center gap-2">
+                        <FaRegUserCircle></FaRegUserCircle> <span><Link to='/login'>Login</Link></span>
+                    </div>
+                    <div className="flex items-center gap-2">
                         <FaRegUser></FaRegUser> <span>My Accounts</span>
                     </div>
                     <div className="flex items-center gap-2">
-                       <FaRegHeart></FaRegHeart> <span>My Wishlist</span>
+                        <FaRegHeart></FaRegHeart> <span>My Wishlist</span>
                     </div>
                 </div>
             </div>
@@ -55,7 +59,7 @@ const Header = () => {
                         <option value="">Fragrances</option>
                         <option value="">All Category</option>
                     </select>
-                    <input type="text" placeholder="Search" className="border-2 p-2 outline-0 md:w-[20rem]"/>
+                    <input type="text" placeholder="Search" className="border-2 p-2 outline-0 md:w-[20rem]" />
                     <button className="border-2 border-[#61C5B3] p-2 outline-0 bg-[#61C5B3] text-white rounded-r-md">Search</button>
                 </div>
                 <div className="bg-[#61C5B3] flex items-center gap-2 text-white p-2 rounded-md">

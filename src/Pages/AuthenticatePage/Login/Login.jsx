@@ -2,47 +2,38 @@ import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../../Provider/AuthProvider"
 import Swal from "sweetalert2"
-import { updateProfile } from "firebase/auth"
-import { auth } from "../../../firebase.config"
 
-const Register = () => {
+const Login = () => {
 
-    const { createUser, Logout } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const naviget = useNavigate()
 
-    const handleRegister = (event) => {
+    const handleLogin = (event) => {
         event.preventDefault()
         const form = event.target;
-        const name = form.name.value;
         const email = form.email.value;
-        const password = form.password.value
+        const password = form.password.value;
+        console.log(email, password)
 
-        console.log(name, email, password)
-
-        createUser(email, password)
+        signIn(email, password)
             .then(result => {
                 const user = result.user
+                console.log(user)
                 Swal.fire({
-                    title: "Account successfully register!",
-                    text: "Your account successfully register please login!",
+                    title: "Account successfully Login!",
+                    text: `${user.email} successfully register`,
                     icon: "success"
                 });
-                updateProfile(auth.currentUser, {
-                    displayName: name
-                })
-                console.log(user)
-                Logout()
-                naviget('/login')
+                naviget('/')
             })
             .catch(error => {
                 Swal.fire({
-                    title: "Account not successfully register!",
+                    title: "Account not successfully Login!",
                     text: error.message,
                     icon: "error"
                 });
             })
     }
-
 
     return (
         <div className="w-11/12 md:w-3/4 mx-auto md:mt-4 mt-6">
@@ -51,14 +42,8 @@ const Register = () => {
                     <img src="https://raw.githubusercontent.com/0rakib0/OnlineStor-Ecom-Client/main/src/assets/bgImage.png" style={{ height: '30rem' }} alt="" />
                 </div>
                 <div className="md:w-6/12 mx-auto p-4">
-                    <form onSubmit={handleRegister}>
-                        <h4 className="text-center text-2xl font-semibold">Register Account</h4>
-                        <label className="form-control w-full">
-                            <div className="label">
-                                <span className="label-text">Full Name</span>
-                            </div>
-                            <input type="text" placeholder="Full name" name="name" className="input input-bordered w-full" />
-                        </label>
+                    <form onSubmit={handleLogin}>
+                        <h4 className="text-center text-2xl font-semibold">Login Account</h4>
                         <label className="form-control w-full">
                             <div className="label">
                                 <span className="label-text">Email</span>
@@ -72,9 +57,9 @@ const Register = () => {
                             <input type="password" placeholder="Password" name="password" className="input input-bordered w-full" />
                         </label>
                         <label className="form-control w-full mt-6 pb-6">
-                            <input type="submit" value='Register' className="input input-bordered w-full bg-[#61C5B3] text-white hover:border-2 hover:border-[#61C5B3] hover:text-[#61C5B3] hover:bg-transparent duration-200" />
+                            <input type="submit" value='Login' className="input input-bordered w-full bg-[#61C5B3] text-white hover:border-2 hover:border-[#61C5B3] hover:text-[#61C5B3] hover:bg-transparent duration-200" />
                         </label>
-                        <p>Already Have Account? <Link className="text-blue-400 pb-4" to='/login'>Register</Link></p>
+                        <p>Do not Have Account? <Link className="text-blue-400 pb-4" to='/register'>Register</Link></p>
                     </form>
                 </div>
             </div>
@@ -82,4 +67,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Login
