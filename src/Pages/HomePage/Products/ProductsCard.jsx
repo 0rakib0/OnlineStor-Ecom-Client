@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
         }
         console.log(CardData)
 
-        fetch('http://localhost:5000/add-cart', {
+        fetch('https://online-storeserver.vercel.app/add-cart', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

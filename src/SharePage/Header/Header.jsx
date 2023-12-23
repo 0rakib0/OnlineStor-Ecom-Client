@@ -51,7 +51,7 @@ const Header = () => {
             {/* middle header section start */}
             <div className="md:w-11/12 mx-auto md:p-4 flex flex-col md:flex-row items-center justify-between md:mt-0 mt-6">
                 <div>
-                    <img src="https://demo.smartaddons.com/templates/html/shoppystore/images/logo-green-cyan.png" alt="" />
+                    <Link to='/'><img src="https://demo.smartaddons.com/templates/html/shoppystore/images/logo-green-cyan.png" alt="" /></Link>
                 </div>
                 <div className="my-6 md:my-0">
                     <select name="" id="" className="border-2 p-2 w-[6rem] outline-0 rounded-l-md">

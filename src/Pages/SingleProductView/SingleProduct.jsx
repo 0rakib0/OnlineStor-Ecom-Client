@@ -13,13 +13,13 @@ const SingleProduct = () => {
     const [prodcts, setProducts] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${Id}`)
+        fetch(`https://online-storeserver.vercel.app/product/${Id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://online-storeserver.vercel.app/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -43,7 +43,7 @@ const SingleProduct = () => {
         }
         console.log(CardData)
 
-        fetch('http://localhost:5000/add-cart', {
+        fetch('https://online-storeserver.vercel.app/add-cart', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const SingleProduct = () => {
     return (
         <div className="w-11/12 mx-auto">
             {/* path section */}
-            <p className="text-lg pl-4 mb-4">Home > Product Details > {product.title}</p>
+            <p className="text-lg pl-4 mb-4">Home | Product Details | {product.title}</p>
             {/* product details section */}
             <div className="grid md:grid-cols-12 bg-base-200 rounded-lg">
                 {/* product image */}

@@ -8,12 +8,14 @@ import Register from "../Pages/AuthenticatePage/Register/Register";
 import Login from "../Pages/AuthenticatePage/Login/Login";
 import PrivetRout from "./PrivetRouts";
 import ProductCard from "../Pages/ProductCard/ProductCard";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',

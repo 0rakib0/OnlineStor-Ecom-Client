@@ -10,7 +10,7 @@ const Bannner = () => {
             <div className='mx-auto' style={{ width: '70%'}}>
                 <Carousel autoPlay={true} interval={2000} showThumbs={false} infiniteLoop={true}>
                     <div>
-                        <img src="https://qph.cf2.quoracdn.net/main-qimg-2cfcf33df21240a83951a4040ffaef1f-lq" />
+                        <img src="https://raw.githubusercontent.com/0rakib0/OnlineStor-Ecom-Client/main/src/assets/banner-2.png" />
 
                     </div>
                     <div>
@@ -18,7 +18,7 @@ const Bannner = () => {
 
                     </div>
                     <div>
-                        <img src="https://qph.cf2.quoracdn.net/main-qimg-2cfcf33df21240a83951a4040ffaef1f-lq" style={{ height: '100%' }} />
+                        <img src="https://raw.githubusercontent.com/0rakib0/OnlineStor-Ecom-Client/main/src/assets/banner-3.png" style={{ height: '100%' }} />
 
                     </div>
                 </Carousel>

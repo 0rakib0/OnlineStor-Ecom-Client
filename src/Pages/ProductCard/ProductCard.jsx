@@ -10,13 +10,13 @@ const ProductCard = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cart-items/${user?.email}`)
+        fetch(`https://online-storeserver.vercel.app/cart-items/${user?.email}`)
             .then(res => res.json())
             .then(data => setCardItem(data))
     }, [])
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/cart-product-delete/${id}`, {
+        fetch(`https://online-storeserver.vercel.app/cart-product-delete/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
