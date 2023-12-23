@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import ProductCard from "./ProductsCard"
 
 const Products = () => {
-    const [prodcts, setProduct] = useState([])
-
     const [productLenght, setProductLenght] = useState(8)
-
+    
+    
+    const [prodcts, setProduct] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/products')
             .then(res => res.json())

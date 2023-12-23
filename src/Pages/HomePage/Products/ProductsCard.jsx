@@ -1,15 +1,15 @@
+import { Link } from "react-router-dom"
+
 const ProductCard = ({ product }) => {
 
-    const { title, price, rating, image, variations } = product
-    console.log(variations[0].size)
-
+    const { title, price, rating, image, variations, _id } = product
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure>
                 <img src={image} className="transition-transform transform-gpu hover:scale-110" style={{ height: '200px', marginTop: '2rem' }} alt="Shoes" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">{title}</h2>
+                <h2 className="card-title hover:text-[#61C5B3] duration-200"><Link to={`/view-product/${_id}`}>{title}</Link></h2>
                 <p className="text-lg font-bold text-[#61C5B3]">${price}</p>
                 <div className="flex justify-between">
                     <p>Color: {variations[0].color}</p>
