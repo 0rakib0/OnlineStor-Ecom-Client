@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Bannner = () => {
     return (
         <div className='flex flex-col md:flex-row gap-6 overflow-hidden'>
-            <div className='mx-auto' style={{ width: '70%', height: '100px'}}>
+            <div className='mx-auto' style={{ width: '70%'}}>
                 <Carousel autoPlay={true} interval={2000} showThumbs={false} infiniteLoop={true}>
                     <div>
                         <img src="https://qph.cf2.quoracdn.net/main-qimg-2cfcf33df21240a83951a4040ffaef1f-lq" />

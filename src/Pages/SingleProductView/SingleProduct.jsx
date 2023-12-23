@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { FaPeopleCarry, FaRegClock, FaSearchLocation, FaStreetView } from "react-icons/fa"
 import { useParams } from "react-router-dom"
 import ProductCard from "../HomePage/Products/ProductsCard"
+import { AuthContext } from "../../Provider/AuthProvider"
+import Swal from "sweetalert2"
 
 const SingleProduct = () => {
     const [product, setProduct] = useState([])
     const ProductId = useParams()
+    const { user } = useContext(AuthContext)
     const Id = ProductId.id
     const [prodcts, setProducts] = useState([])
 
@@ -21,8 +24,47 @@ const SingleProduct = () => {
             .then(data => setProducts(data))
     }, [])
 
-    console.log(product?.variations?.[0]?.color)
-    console.log(product?.variations?.[0]?.size)
+    const hanldeAddCartItem = (cardProduct) => {
+
+        if (!user) {
+            alert('Please Login or Register')
+            return <Navigate to='/login'></Navigate>
+        }
+
+        console.log(cardProduct.title)
+        
+
+        const CardData = {
+            productId: cardProduct._id, 
+            title: cardProduct.title,
+            price: cardProduct.title,
+            image: cardProduct.image,
+            user: user?.email
+        }
+        console.log(CardData)
+
+        fetch('http://localhost:5000/add-cart', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(CardData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Item Added in Cart",
+                        text: `Item successfully added to the cart`,
+                        icon: "success"
+                    });
+                }
+            })
+    }
+
+
+
+
 
     return (
         <div className="w-11/12 mx-auto">
@@ -101,7 +143,7 @@ const SingleProduct = () => {
                     </div>
                     <hr />
                     <div>
-                        <button className="bg-[#61C5B3] w-3/4 mt-12 p-2 text-white rounded-lg">Add To Card</button>
+                        <button className="bg-[#61C5B3] w-3/4 mt-12 p-2 text-white rounded-lg" onClick={()=>hanldeAddCartItem(product)}>Add To Card</button>
                     </div>
                 </div>
                 {/* delivery, service and other info */}

@@ -17,7 +17,7 @@ const Products = () => {
     }
 
     return (
-        <div className="bg-base-200 col-span-9 py-6">
+        <div className="bg-base-200 col-span-9 py-6 ">
             {/* product filter section                               */}
             <div className="flex justify-between md:px-6 items-center pb-4">
                 <div>

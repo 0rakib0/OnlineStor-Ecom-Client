@@ -1,7 +1,18 @@
+import { useContext } from "react";
 import { FaFlagCheckered, FaFlagUsa, FaRegHeart, FaRegUser, FaRegUserCircle, FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Header = () => {
+
+    const { user, Logout } = useContext(AuthContext)
+    const naviget = useNavigate()
+
+    const handleLogout = () => {
+        Logout()
+        naviget('/')
+    }
+
     return (
         <div className="">
             {/* top header section start */}
@@ -21,8 +32,11 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="flex gap-4">
+                    {user&& <div className="flex items-center gap-2">
+                        {user.email}
+                    </div>}
                     <div className="flex items-center gap-2">
-                        <FaRegUserCircle></FaRegUserCircle> <span><Link to='/login'>Login</Link></span>
+                        {user ? <><FaRegUserCircle></FaRegUserCircle> <span><Link onClick={handleLogout}>Logout</Link></span></> : <><FaRegUserCircle></FaRegUserCircle> <span><Link to='/login'>Login</Link></span></>}
                     </div>
                     <div className="flex items-center gap-2">
                         <FaRegUser></FaRegUser> <span>My Accounts</span>
@@ -63,7 +77,7 @@ const Header = () => {
                     <button className="border-2 border-[#61C5B3] p-2 outline-0 bg-[#61C5B3] text-white rounded-r-md">Search</button>
                 </div>
                 <div className="bg-[#61C5B3] flex items-center gap-2 text-white p-2 rounded-md">
-                    <FaShoppingCart></FaShoppingCart><p>0 ITEM - $0.00</p>
+                    <FaShoppingCart></FaShoppingCart><Link to='/card-items'>My Crad Items</Link>
                 </div>
             </div>
             <hr />

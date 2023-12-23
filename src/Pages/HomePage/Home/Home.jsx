@@ -1,5 +1,6 @@
-import Bannner from "../../../../Banner"
+
 import Service from "../../Service/Service"
+import Bannner from "../Banner/Banner"
 import Products from "../Products/Products"
 
 const Home = () => {

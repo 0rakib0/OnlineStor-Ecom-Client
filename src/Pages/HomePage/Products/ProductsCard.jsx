@@ -1,8 +1,44 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../../Provider/AuthProvider"
+import Swal from "sweetalert2"
 
 const ProductCard = ({ product }) => {
 
     const { title, price, rating, image, variations, _id } = product
+    const { user } = useContext(AuthContext)
+
+    const hanldeAddCartItem = () => {
+
+        if (!user) {
+            alert('Please Login or Register')
+            return <Navigate to='/login'></Navigate>
+        }
+
+        const CardData = {
+            productId: _id, title, price, image, user: user?.email
+        }
+        console.log(CardData)
+
+        fetch('http://localhost:5000/add-cart', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(CardData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Item Added in Cart",
+                        text: `Item successfully added to the cart`,
+                        icon: "success"
+                    });
+                }
+            })
+    }
+
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure>
@@ -56,7 +92,7 @@ const ProductCard = ({ product }) => {
                         </div>
                     )}
                     <div>
-                        <button className="bg-[#61C5B3] text-white px-2 py-0.5 rounded hover:text-[#61C5B3] hover:border duration-300 border-[#61C5B3] hover:bg-transparent">Add To Card</button>
+                        <button className="bg-[#61C5B3] text-white px-2 py-0.5 rounded hover:text-[#61C5B3] hover:border duration-300 border-[#61C5B3] hover:bg-transparent" onClick={hanldeAddCartItem}>Add To Card</button>
                     </div>
                 </div>
             </div>
