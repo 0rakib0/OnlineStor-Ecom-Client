@@ -2,7 +2,7 @@ import { FaPhoneAlt, FaRedo } from "react-icons/fa";
 import { TbTruckDelivery } from "react-icons/tb";
 const Service = () =>{
     return (
-        <div className="my-6 bg-base-200 p-4 flex-col md:flex-row flex justify-between">
+        <div className="my-6 bg-base-200 p-4 flex-col md:flex-row flex justify-between mt-12">
             <div className="flex items-center gap-2">
                 <div className="text-4xl bg-[#61C5B3] p-2 rounded-full text-white">
                     <TbTruckDelivery></TbTruckDelivery>

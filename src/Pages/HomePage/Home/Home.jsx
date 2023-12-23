@@ -11,7 +11,6 @@ const Home = () => {
             <Service></Service>
             {/* Product section */}
             <Products></Products>
-
         </div>
     )
 }

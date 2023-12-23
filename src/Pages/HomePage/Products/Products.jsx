@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import ProductCard from "./ProductsCard"
 
 const Products = () => {
-
     const [prodcts, setProduct] = useState([])
+
+    const [productLenght, setProductLenght] = useState(8)
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -11,7 +12,9 @@ const Products = () => {
             .then(data => setProduct(data))
     }, [])
 
-    console.log(prodcts)
+    const handleSeeAll = () =>{
+        setProductLenght(prodcts.length)
+    }
 
     return (
         <div className="bg-base-200 col-span-9 py-6">
@@ -31,11 +34,16 @@ const Products = () => {
                 </div>
             </div>
             <hr />
-            <div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 my-6 md:px-4">
                 {
-                    prodcts.map(product => <ProductCard key={product._id} product={product}></ProductCard>)
+                    prodcts.slice(0, productLenght).map(product => <ProductCard key={product._id} product={product}></ProductCard>)
                 }
             </div>
+
+            {prodcts.length == productLenght? '': <div className="flex justify-center">
+                <button onClick={handleSeeAll} className="bg-[#61C5B3] py-2 px-6 text-white rounded hover:text-[#61C5B3] hover:border duration-300 border-[#61C5B3] hover:bg-transparent">See All</button>
+            </div>
+            }
         </div>
     )
 }
